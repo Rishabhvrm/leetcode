@@ -5,7 +5,7 @@ class Solution:
         output = []
         for n in nums:
             if n in num_set:
-                output.append(n)
+                output.append(n)             # add duplicate elements to the output list
             else:
                 num_set.add(n)
 
