@@ -1,5 +1,6 @@
 # FLOYD'S CYCLE-FINDING ALGORITHM
 # FLOYD'S hare and tortoise algo (fast and slow pointers)
+# faster will catch up slower one eventually
 
 def hasCycle(head: Optional [ListNode]) -> bool:
     if head:
