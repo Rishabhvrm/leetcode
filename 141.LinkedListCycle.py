@@ -4,7 +4,7 @@
 
 def hasCycle(head: Optional [ListNode]) -> bool:
     if head:
-        slow, fast = head.next, head.next
+        slow, fast = head, head
 
         while slow and fast and fast.next:
             slow = slow.next
