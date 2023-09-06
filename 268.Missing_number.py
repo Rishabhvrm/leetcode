@@ -1,3 +1,4 @@
+# similar to 448. Find all numbers disappeared in an Array
 def missingNumber(nums) -> int:    
     n = len(nums)
 

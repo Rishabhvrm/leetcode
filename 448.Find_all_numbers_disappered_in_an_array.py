@@ -1,3 +1,4 @@
+# similar to 268.Missing Numbers
 def findDisappearedNumbers(nums):
     
     set1, l = set(nums), len(nums)
