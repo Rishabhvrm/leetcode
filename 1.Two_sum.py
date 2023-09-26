@@ -1,23 +1,29 @@
-def twoSum(nums, target):
-    result, l = [], len(nums)
-    i= 0
-    while i < l:
-        j = i + 1
-        while j < l:
-            second_num = target - nums[i]
-            if nums[j] == second_num:
-                result.append(i)
-                result.append(j)
-                return result
-            j += 1
-        i += 1
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        l = len(nums)
+        
+        ## BRUTE FORCE
+        ## T(N): O(N * N)
+        ## SPACE: CONSTANT
 
-    return result
+        # for i in range(l):
+        #     for j in range(i+1,l):
+        #         if nums[j] == target - nums[i]:
+        #             return [i,j]
+        # return [] # no solution found
 
-n1, t1 = [2,7,11,15], 9
-n2, t2 = [3,2,4], 6
-n3, t3 = [3,3], 6
+        ## USING HASHMAP/DICTIONARY
 
-print(twoSum(n1,t1))
-print(twoSum(n2,t2))
-print(twoSum(n3,t3))
+        prevMap = {} # val : idx
+
+        for idx, ele in enumerate(nums):
+            
+            # check if second number exist in dict
+            # if yes, return idx for both numbers
+            if (target - ele) in prevMap:
+                return [prevMap[target - ele], idx]
+
+            # else add ele : idx to dictionary
+            prevMap[ele] = idx
+        
+        return   # no solution
