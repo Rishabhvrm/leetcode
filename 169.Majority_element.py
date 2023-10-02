@@ -50,15 +50,22 @@ print(d.get(4, 4))
 print(majorityElement2(nums2))
 
 
-# Boyer-Moore Voting Algorithm
+    ## APPROACH 2: BAYER MOORE'S VOTING ALGORITHM
+    ## IDEA: add a vote(count) for every element encountered. Decrease the vote if a   different element encountered. Majority element will beat every other element in terms of its count
+    ## T(N): O(N)
+    ## SPACE: O(1)
 def majorityElement3(nums):
-    res, count = 0, 0
+    count = 0               # count for occurances of majority element
+    mjrty_ele = 0           # candidate for majortity element 
 
-    for n in nums:
-        if count == 0:
-            res = n
-        count+= (1 if n == res else -1)
-    return res
+    for ele in nums:
+        # if count == 0 then it's time to update majority element candidate
+        if count == 0: mjrty_ele = ele
+
+        # if current ele is same as mjrty_ele then increase count else decrease it
+        count += (1 if ele == mjrty_ele else -1)
+
+    return mjrty_ele
 
 print(majorityElement3(nums2))
 
