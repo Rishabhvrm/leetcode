@@ -7,7 +7,6 @@ def exist(board, word) -> bool:
     
     # row, col, position of letter in word
     def dfs(r,c,i):
-        pass
         # base case
         # if i pointer reached end of the word+1 idx, return True
         if i == len(word):
