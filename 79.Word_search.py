@@ -6,16 +6,17 @@ def exist(board, word) -> bool:
     visited = set()
     
     # row, col, position of letter in word
-    def dfs(r,c,i):
+    # compare letter at r,c (in board) with letter at idx (in word)
+    def dfs(r,c,idx):
         # base case
         # if i pointer reached end of the word+1 idx, return True
-        if i == len(word):
+        if idx == len(word):
             return True
 
         if (
             r < 0 or c < 0 
             or r >= ROWS or c >= COLS 
-            or word[i] != board[r][c] 
+            or word[idx] != board[r][c] 
             or (r,c) in visited
         ):
             return False
@@ -26,12 +27,14 @@ def exist(board, word) -> bool:
         # recursive solution
         # res will be true even if any of these is true
         # i + 1 to move to next position in word
-        res = (dfs(r + 1, c, i + 1) or
-                dfs(r - 1, c, i + 1) or
-                dfs(r, c + 1, i + 1) or
-                dfs(r, c - 1, i + 1))
+        res = (dfs(r + 1, c, idx + 1) or
+                dfs(r - 1, c, idx + 1) or
+                dfs(r, c + 1, idx + 1) or
+                dfs(r, c - 1, idx + 1))
         
-        # remove the current position from path ??
+        # remove the current position from path
+        # bcz we can't use the same letter again to form the path
+        # like we can't use a single A two times
         visited.remove((r,c))
         return res
 
