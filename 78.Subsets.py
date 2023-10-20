@@ -19,6 +19,7 @@ def subsets(nums: List[int]) -> List[List[int]]:
         # pop the above appended element
         # so it doesn't stay in list for the next round of recursion
         # elements should be added to a fresh list
+        # backtrack by removing the last element
         subset.pop()
 
         # this didn't work because the second argument doesn't return any value
