@@ -5,6 +5,9 @@ class Solution:
         ## APPROACH: backtracking, decision tree, recursion
         ## TIME: O(2 ^ N)
         ## SPACE: O(N), for set.   * could be wrong
+        ##        O(1), if set not used
+        ##        in both cases recursion stack memory is used
+
 
         def backtrack(start, curr_lst, total):
             # base cases
