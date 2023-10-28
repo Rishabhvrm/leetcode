@@ -58,7 +58,7 @@ class Solution:
                 break
             
         # if target not found
-        if not (top <= bottom):
+        if (top > bottom):
             return False
         
 
