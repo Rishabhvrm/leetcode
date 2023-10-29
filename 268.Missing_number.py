@@ -13,6 +13,21 @@ def missingNumber(nums) -> int:
     # use set subtraction to find the missing value (or difference)
     return (second_set - first_set).pop()
 
+    ## APPROACH-2: USING LIST AND SET
+    # revision
+def missing_number(nums) -> int:
+    s = set()
+    # create set to store all numbers
+    for x in range(len(nums)+1):
+        s.add(x)
+    
+    # traverse input list and remove those element from set
+    for ele in nums:
+        s.remove(ele)
+    
+    # only the missing number should remain in the set, return that
+    return s.pop()
+
 
        
 a = [3,0,1]
