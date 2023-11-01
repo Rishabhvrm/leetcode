@@ -126,7 +126,7 @@ print(f'function => partition_array([3,2,4,1,6,3,7,5], 4) Output => {partition_a
 print('------------------------------------------------')
     
 
-## KADANE'S ALGORITHM
+## 5. KADANE'S ALGORITHM
 ## Leetcode 53
 ## A) Given an integer array nums, 
 # find the subarray with the largest sum, 
@@ -189,4 +189,67 @@ def sliding_window_kadens(nums):
 print('------------------------------------------------')
 print(f'function => sliding_window_kadens([4,-1,2,-7,3,4]) Output => {sliding_window_kadens([4,-1,2,-7,3,4])}')
 print(f'function => sliding_window_kadens([-2,-3,4,-1,-2,1,5,-1]) Output => {sliding_window_kadens([-2,-3,4,-1,-2,1,5,-1])}')
+print('------------------------------------------------')
+
+
+
+
+## 6. SLIDING WINDOW
+## SUBARRAY SLIDING WINDOW
+## Find a subarray that sums to a target, all +ve int, return indexes
+
+## the reason that we're not moving the right inwards if sum > target is 
+## that we know that target can't be achived using the numbers inside the window right now
+## because we already calculated the sum for that,
+## therefore move the left pointer (some confusion in expanation)
+def find_sum_subarray(nums, target):
+    left, right = 0,0
+
+    while left < len(nums) and right < len(nums):
+        curr_sum = 0
+        curr_sum = sum(nums[left : right + 1])
+
+        if curr_sum == target:
+            return (left, right)
+        elif curr_sum < target:                         # expand window
+            right += 1
+        elif curr_sum > target:                         # shrink window
+            left += 1
+
+    return None
+
+print('------------------------------------------------')
+print(f'function => find_sum_subarray([5,3,1,7,6,4,3,2], 14) Output => {find_sum_subarray([5,3,1,7,6,4,3,2], 14)}')
+print(f'function => find_sum_subarray([3,1,7,6,24,3,2], 5) Output => {find_sum_subarray([3,1,7,6,24,3,2], 5)}')
+print(f'function => find_sum_subarray([3,1,7,6,24,3,2], 5) Output => {find_sum_subarray([3,1,7,6,24,3,2], -1)}')
+print('------------------------------------------------')
+
+
+
+
+## 7. SUBARRAY PREFIX SUM
+## Find a subarray that sums to 0 (can contain +ve and -ve int), return the indexes
+## Sol: Store prefix sum
+
+def prefix_sum_subarray(nums):
+    curr_sum = 0
+    idx_sum = {}        # sum till idx -> idx
+
+    for idx in range(len(nums)):
+        curr_sum += nums[idx]
+        # A. First condition of sum being 0
+        if curr_sum == 0: return (0, idx)
+
+        # B. Another condition of sum being 0
+        # if any new sum == any old sum, 
+        # elements btw these two would sum to 0
+        if curr_sum in idx_sum:
+            return (idx_sum[curr_sum] + 1, idx)
+        else: 
+            idx_sum[curr_sum] = idx
+
+    return None
+print('------------------------------------------------')
+print(f'function => prefix_sum_subarray([-1,2,1,-4,2,3,-1,2]) Output => {prefix_sum_subarray([-1,2,1,-4,2,3,-1,2])}')
+print(f'function => prefix_sum_subarray([-1,3,1,-4,2,3,-1,2]) Output => {prefix_sum_subarray([-1,3,1,-4,2,3,-1,2])}')
 print('------------------------------------------------')
