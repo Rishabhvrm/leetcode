@@ -9,7 +9,7 @@ class Solution:
 
         def dfs(course):
             # base cases
-            if course in visit_set: return False
+            if course in visit_set: return False            # cycle detected
             if pre_map[course] == []: return True           # no prereq for this course
 
             visit_set.add(course)
@@ -30,7 +30,7 @@ class Solution:
         for course, prereq in prerequisites:
             pre_map[course].append(prereq)
 
-        # visit all courses along current DFS path
+        # visit all courses along current DFS path, to detect cycles
         visit_set = set()
 
         for course in range(numCourses):
