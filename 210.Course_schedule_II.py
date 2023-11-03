@@ -42,6 +42,7 @@ class Solution:
         return output
         
         
+        
 
 numCourses = 2
 prerequisites = [[1,0]]
