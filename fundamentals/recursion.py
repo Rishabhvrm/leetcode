@@ -13,8 +13,8 @@ print('------------------------------------------------')
 
 
 
-## ITERATIVE MEMOIZATION
-def iterative_memo_fib(n):
+## ITERATIVE DP, bottom up
+def iterative_dp_fib(n):
     dp = [0] * (n+1)
     # base cases
     dp[0] = dp[1] = 1
@@ -24,13 +24,13 @@ def iterative_memo_fib(n):
         dp[idx] = dp[idx - 1] + dp[idx - 2]
     return dp[n]
 print('------------------------------------------------')
-print(f'function => iterative_memo_fib(34) Output => {iterative_memo_fib(34)}')
+print(f'function => iterative_dp_fib(34) Output => {iterative_dp_fib(34)}')
 print('------------------------------------------------')
 
 
 
 
-## RECURSIVE MEMOIZATION
+## RECURSIVE MEMOIZATION, top down
 ## memo = {}, n -> fib value for n
 def recursive_memo_fib(n, memo):
     if n in memo: return memo[n]
