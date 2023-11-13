@@ -18,5 +18,5 @@ class Solution:
 
             return rob2
 
-        #                   skip first value, skip last value
+        # if only 1 value in input, skip first value, skip last value
         return max(nums[0], helper(nums[1:]), helper(nums[:-1]))
