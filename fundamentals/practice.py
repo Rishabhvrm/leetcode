@@ -253,3 +253,24 @@ print('------------------------------------------------')
 print(f'function => prefix_sum_subarray([-1,2,1,-4,2,3,-1,2]) Output => {prefix_sum_subarray([-1,2,1,-4,2,3,-1,2])}')
 print(f'function => prefix_sum_subarray([-1,3,1,-4,2,3,-1,2]) Output => {prefix_sum_subarray([-1,3,1,-4,2,3,-1,2])}')
 print('------------------------------------------------')
+
+
+
+
+# 2 POINTER SORTING, doesn't work LOL
+a = [4,3,1,2,5,15,11]
+out = [0] * len(a)
+left, right = 0, len(a) - 1
+l = len(a)
+for i in range(l-1, -1, -1):
+    if a[left] > a[right]:
+        out[i] = a[left]
+        left += 1
+    else:
+        out[i] = a[right]
+        right -= 1
+print(out)
+
+
+## USING REVERSE
+print(a.reverse())
