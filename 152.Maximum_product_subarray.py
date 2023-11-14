@@ -14,6 +14,7 @@ class Solution:
     ## REVISIT
     ## APPROACH: keep track of max and min at each step
     # and calculate the next max based on that
+    # similar to 53. max sum subarray, kadane's variation
 
     ## TIME: O(n)
     ## SPACE: O(1)
