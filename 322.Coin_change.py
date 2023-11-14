@@ -20,8 +20,41 @@ def coinChange(coins, amount) -> int:
     # if return value != default value during initialization, it means we couldn't find the solution
     return dp[amount] if dp[amount] != amount+1 else -1
 
-# coins = [1,2,5]
+
+def coinChange2(coins, amount):
+    ## REVISIT
+    def backtrack(curr_sum, steps):
+        # base case
+        if curr_sum == amount:
+            res.append(steps)
+            return
+
+        if curr_sum > amount: return
+
+        for coin in coins:
+            curr_sum += coin
+            backtrack(curr_sum, steps + 1)
+            curr_sum -= coin
+
+    res = []
+    backtrack(0, 0)
+    return min(res)
+    
+
+## value = amount + 1, any value greater than amount.
+## bcs see the last return statement, it helps us find out if the 
+## amount can be made using the coins or not, also see the dp[amt]
+## statement, it updates the curr value and store the prev value of dp[amt]
+## for next iteration of coin.
+## It doesn't have to be amount + 1, could be any value, say inf
+
+## TIME: O(amount * len(coin))
+## SPACE: O(amount)
+
+
+coins = [1,2,5]
 # amount = 11
-coins = [1,3,4,5]
-amount = 7
-print(coinChange(coins, amount))
+# coins = [1,3,4,5]
+amount = 11
+print(coinChange3(coins, amount))
+
