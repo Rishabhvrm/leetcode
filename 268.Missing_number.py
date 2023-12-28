@@ -28,6 +28,16 @@ def missing_number(nums) -> int:
     # only the missing number should remain in the set, return that
     return s.pop()
 
+def missingNumber_xor(nums):
+        ## BIT MANIPULATION
+        ans = 0
+        for n in nums:
+            ans ^= n
+
+        for i in range(len(nums) + 1):
+            ans ^= i
+            
+        return ans
 
        
 a = [3,0,1]
