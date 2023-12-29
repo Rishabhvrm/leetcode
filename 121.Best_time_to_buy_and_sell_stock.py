@@ -50,6 +50,18 @@ def maxProfit(prices) -> int:
 
     return profit
 
+def max_profit(prices):
+    # 2 pointers
+    l, max_profit = 0, 0
+
+    for r in range(len(prices)):
+        # if sell ever goes less than buy, make buy = sell
+        if prices[r] < prices[l]: l = r
+
+        curr_profit = prices[r] - prices[l]
+        max_profit = max(max_profit, curr_profit)
+        
+    return max_profit
 
 p = [7,1,5,3,6,4]
 p2 = [3,3]
