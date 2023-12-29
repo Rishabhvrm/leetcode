@@ -11,13 +11,18 @@ def singleNumber(nums):
     for k, v in d.items():
         if v == 1:
             return k
+        
+def single_number_xor(nums):
+    # APPROACH: BIT MANIPULATION, XOR
+    # TIME: O(n)
+    # SPACE: O(1)
+    res = 0
+    for n in nums:
+        res ^= n
+
+    return res
 
 
 n = [2,2,1]
 print(singleNumber(n))
-
-# d = {}
-# for i in range(1,4):
-#     d[i] += 1
-
-# print(d)
+print(single_number_xor(n))
