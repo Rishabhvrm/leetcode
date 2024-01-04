@@ -1,22 +1,25 @@
+from typing import Optional
 # Definition for singly-linked list.
-# class ListNode:
-    # def __init__(self, val=0, next=None):
-    #     self.val = val
-    #     self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    # def __repr__(self):
-    #     return str(self.val)
+    def __repr__(self):
+        return str(self.val)
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # previous, current and next node
-        previous, current, nxt = None, head, None
+        # REVISIT
+        # TIME: O(n)
+        # SPACE: O(1)
 
-        while (current):
-            nxt = current.next
-            current.next = previous
-            previous = current
-            current = nxt
-            head = previous
-            
-        return head
+        prev, curr = None, head
+
+        while curr:
+            nxt = curr.next         # store reference of next before losing it
+            curr.next = prev        # change direction
+            prev = curr             # update prev
+            curr = nxt              # update curr
+
+        return prev
