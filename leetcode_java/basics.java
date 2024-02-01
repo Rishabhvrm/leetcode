@@ -19,11 +19,10 @@ class Dog {
     private String name;
 
     public void setName(String n) {
-        // name = n;
-        this.name = n;
+        name = n;
+        // this.name = n;
         String name = "John";
-
-        System.out.println(this.name + name);
+        System.out.println(this.name + " and " + name);
     }
 
     public String getName() {
