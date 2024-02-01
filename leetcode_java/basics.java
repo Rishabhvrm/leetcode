@@ -8,8 +8,26 @@ class Test {
     public static void main(String[] args) {
         Dog d = new Dog();
         d.setName("jake");
+        System.out.println(d.getName());
 
         arrayList.arrayMethod();
+    }
+}
+
+// 'this' keyword
+class Dog {
+    private String name;
+
+    public void setName(String n) {
+        // name = n;
+        this.name = n;
+        String name = "John";
+
+        System.out.println(this.name + name);
+    }
+
+    public String getName() {
+        return name;
     }
 }
 
@@ -39,17 +57,4 @@ class arrayList {
         System.out.println(Arrays.toString(arr2));
     }
     
-}
-
-// 'this' keyword
-class Dog {
-    private String name;
-
-    public void setName(String n) {
-        // name = n;
-        this.name = n;
-        String name = "John";
-
-        System.out.println(this.name + name);
-    }
 }
