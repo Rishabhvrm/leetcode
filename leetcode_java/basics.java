@@ -6,12 +6,18 @@ import java.util.Arrays;
 
 class Test {
     public static void main(String[] args) {
-        
+        // this keyword
         Dog d = new Dog();
         System.out.println(d.getName());
         d.setName("jake");
         System.out.println(d.getName());
+
+        // arrayList
         arrayList.arrayMethod();
+
+        // printf
+        String name = "Alex";
+        System.out.printf("My name is %s and I have %d dogs.", name, 2);
     }
 }
 
