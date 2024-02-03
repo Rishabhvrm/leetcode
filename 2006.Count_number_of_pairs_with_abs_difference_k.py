@@ -6,7 +6,7 @@ class Solution:
         ## APPROACH: Brute Force
         ## TIME: O(n * n)
         ## Space: O(1)
-        
+        '''
         counter, l = 0, len(nums)
 
         for i in range(l):
@@ -14,6 +14,22 @@ class Solution:
                 if abs(nums[i] - nums[j]) == k: counter += 1
 
         return counter
+        '''
+        ## APPROACH: frequency/occurance using hashmap
+        ## TIME: O(n)
+        ## Space: O(1)
+
+        count = 0
+        freq = {}
+
+        for n in nums:
+            # count the number of times a number appears
+            freq[n] = freq.get(n,0) + 1
+        # print(freq)
+        for n in freq:
+            if n + k in freq:
+                count += freq[n] * freq[n + k]
+        return count
         
 
 
