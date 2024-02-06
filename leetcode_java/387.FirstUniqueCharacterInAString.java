@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 
+@SuppressWarnings("unused")
 class Solution {
     public static void main(String[] args) {
         System.out.println(firstUniqCharBruteForce("lleetcode"));
