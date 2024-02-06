@@ -1,6 +1,6 @@
 from collections import Counter
 class Solution:
-
+    ''' SOLUTION-1 '''
     # correct when target doesn't have duplicates
     # sliding window ~ start a window at each idx and go till end of s
     ## TIME: O( n * n )
@@ -28,6 +28,8 @@ class Solution:
         return min_res
 
 
+
+    ''' SOLUTION-2 '''
     # works when target has duplicates
     # sliding window ~ start a window at each idx and go till end of s
     ## TIME: O( n * n ), TLE, 265 / 267 testcases passed
@@ -67,13 +69,15 @@ class Solution:
         return res
 
 
+
+    ''' SOLUTION-3 '''
     # works when target has duplicates
     # similar to above but cleaner and modular code
     ## TIME: O( n * n ), TLE, 265 / 267 testcases passed
     def min_window_brute_force_2(self, s: str, t: str):
         
         # checks if given window is valid or not
-        def check_valid_window(strng) -> bool:
+        def check_valid_window(strng) -> bool:      # update this to just start, end
             t_count = Counter(t)
             # if ele occurs in t_count, decrement its value
             for ele in strng:
@@ -93,12 +97,12 @@ class Solution:
         min_str, min_len = "", float('inf')
         # res = []
 
-        # check if the current window is valid?
-            # if yes: add to result and move the start pointer
-            # if no: move the end pointer in hope of making it valid
+        # check if the curr_window is valid?
+            # if yes: add curr_window to result and move the start pointer (shrink from left)
+            # if no: move the end pointer in hope of making it valid (expand from right)
 
         while end <= len(s):
-            while check_valid_window(s[start: end + 1]):
+            while check_valid_window(s[start: end + 1]):            # update this to just start, end
                 # don't need this actually
                 # res.append(s[start: end + 1])
                 curr_min =  s[start: end + 1]  
@@ -110,6 +114,54 @@ class Solution:
        
         # print(res)
         return min_str
+
+
+
+    ''' SOLUTION-4 : Optimized'''
+    ## TIME: O( n + k ), n = len(s), k = len(t)
+    ## SPACE: O( n + k )
+    def minWindow(self, s: str, t: str):
+        if not s or not t: return ""
+        
+        t_count = Counter(t)                     # count of unique chars in t
+        # need: unique chars in t, that should be present in curr window for it to be valid
+        need = len(t_count)
+
+        window_count = {}                        # count of every unique char in curr window
+        # need's counterpart for curr window, if have == need, window is valid
+        have = 0                                 
+        
+        left, right = 0, 0
+
+        # tuple: (min_window_length, min_left, min_right)
+        ans = float("inf"), None, None
+
+        while right < len(s):
+            curr_char = s[right]
+            window_count[curr_char] = window_count.get(curr_char, 0) + 1
+
+            if curr_char in t_count and window_count[curr_char] == t_count[curr_char]:
+                have += 1
+
+            # keep shrinking window if it's valid
+            while left <= right and have == need:
+                curr_char = s[left]                         # update curr_char
+
+                if right - left + 1 < ans[0]:               # save smallest window until now
+                    ans = (right - left + 1, left, right) 
+                
+                window_count[curr_char] -= 1                # since left is moving, decrease curr_char's count
+                
+                # if moving left will make window unvalid, decrease 'have'
+                if curr_char in t_count and window_count[curr_char] < t_count[curr_char]:
+                    have -= 1
+
+                left += 1                                   # move left => shrink
+
+            right += 1                                      # move right => expand
+        
+        min_window_len, min_left, min_right = ans
+        return "" if min_window_len == float("inf") else s[min_left : min_right + 1]
 
 
 obj = Solution()
