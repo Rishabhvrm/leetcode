@@ -65,18 +65,68 @@ class Solution:
             if len(ele) < min_len:
                 min_len, res = len(ele), ele
         return res
-    
+
+
+    # works when target has duplicates
+    # similar to above but cleaner and modular code
+    ## TIME: O( n * n ), TLE, 265 / 267 testcases passed
+    def min_window_brute_force_2(self, s: str, t: str):
+        
+        # checks if given window is valid or not
+        def check_valid_window(strng) -> bool:
+            t_count = Counter(t)
+            # if ele occurs in t_count, decrement its value
+            for ele in strng:
+                if ele in t_count:
+                    t_count[ele] = max(0, t_count[ele] - 1)
+            
+            # a) count 0s in t_count
+            val_count = 0
+            for v in t_count.values():
+                if v == 0:
+                    val_count += 1
+
+            # b) check if every key in t_count has 0 value
+            return val_count == len(t_count) 
+
+        start, end = 0, 0
+        min_str, min_len = "", float('inf')
+        # res = []
+
+        # check if the current window is valid?
+            # if yes: add to result and move the start pointer
+            # if no: move the end pointer in hope of making it valid
+
+        while end <= len(s):
+            while check_valid_window(s[start: end + 1]):
+                # don't need this actually
+                # res.append(s[start: end + 1])
+                curr_min =  s[start: end + 1]  
+                if len(curr_min) < min_len:
+                    min_str, min_len = curr_min, len(curr_min)      # pick min len str
+                start += 1
+            else:
+                end += 1
+       
+        # print(res)
+        return min_str
+
 
 obj = Solution()
 
-# without duplicates
-s, t = "ADOBECODEBANC", "ABC"
+### brute force without duplicates
+# s, t = "ADOBECODEBANC", "ABC"
 # print(obj.min_window_brute_force_t_without_duplicates(s, t))
 # print(obj.min_window_brute_force_t_without_duplicates('a', 'a'))
 
-# with duplicates
-s, t = "ADOABCAB", "AABC"
+### brute force with duplicates
+# s, t = "ADOABCAB", "AABC"
 # print(obj.min_window_brute_force(s, t))
 # print(obj.min_window_brute_force('a', 'aa'))
-s, t = "aaaaaaaaaaaabbbbbcdd", "abcdd"
-print(obj.min_window_brute_force(s, t))
+# s, t = "aaaaaaaaaaaabbbbbcdd", "abcdd"
+# print(obj.min_window_brute_force(s, t))
+
+### brute force with duplicates modular
+s, t = "ADOBECODEBANC", "ABC"
+s, t = "ADOABCAB", "AABC"
+print(obj.min_window_brute_force_2(s, t))
