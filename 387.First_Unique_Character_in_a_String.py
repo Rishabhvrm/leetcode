@@ -59,5 +59,16 @@ class Solution:
                 return idx
 
         return -1
+    
+    # short version of firstUniqChar3()
+    def firstUniqChar4(self, s: str) -> int:
+        count = {}      # {char: occurance}
+        for c in s:
+            count[c] = count.get(c, 0) + 1
+
+        for idx in range(len(s)):
+            if count[s[idx]] == 1: return idx
         
+        return -1
+    
 
