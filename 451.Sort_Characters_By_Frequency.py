@@ -23,7 +23,7 @@ class Solution:
         # for letter, freq in counter.most_common():
         # print(counter)
         # sort dict in reverse order based on occurance
-        for char, occurance in (sorted(counter.items(),key= lambda item: item[1], reverse=True)):
+        for char, occurance in (sorted(counter.items(),key= lambda item: item[1], reverse=True)): # 26 * log 26
             res += char * occurance
             # for _ in range(occurance):
             #     res += char                # append 'char' to res, 'occurance' times
