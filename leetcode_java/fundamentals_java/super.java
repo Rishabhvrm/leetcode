@@ -1,4 +1,4 @@
-package leetcode_java;
+package leetcode_java.fundamentals_java;
 
 /*
  * 'super' keyword allows for accessing 
@@ -35,7 +35,7 @@ class Dog extends Animal {
     String color = "black";
 
     Dog() {
-        super();
+        super(); // java is going to call it by default as well even if we don't call it here
         System.out.println("Dog Constructor");
     }
 

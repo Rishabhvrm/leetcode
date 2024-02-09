@@ -1,4 +1,4 @@
-package leetcode_java;
+package leetcode_java.fundamentals_java;
 
 import java.util.Collections;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ class Test {
         // printf
         String name = "Alex";
         System.out.printf("My name is %s and I have %d dogs.", name, 2);
+
     }
 }
 
@@ -72,5 +73,13 @@ class arrayList {
         System.out.println(Arrays.compare(arr1, arr2));
         System.out.println(Arrays.toString(arr1));
         System.out.println(Arrays.toString(arr2));
+
+        int arr3[] = {4,3,2,1};
+        System.out.println(Arrays.toString(arr3));
     }
 }
+
+/*
+ * Instance communication
+ * Eg: dogs, breeding, pup
+ */
