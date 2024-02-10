@@ -92,3 +92,39 @@ class Solution:
             j -= 1
 
         return True
+
+    '''
+    Similar approaches as above but cleaner
+    '''
+    def backspaceCompare2(self, s: str, t: str) -> bool:
+        '''
+        APPROACH: build final strings using stack
+        TIME: O( M + N )
+        SPACE: O( M + N )
+        '''
+        def build(s):
+            res = []
+
+            for char in s:
+                if char != "#": res.append(char)
+                elif res: res.pop()
+            
+            return "".join(res)
+        return build(s) == build(t)
+
+    def backspaceCompare2(self, s: str, t: str) -> bool:
+        '''
+        APPROACH: 2 pointers starting from end, count occurances of '#' and skip
+        TIME: O( M + N )
+        SPACE: O( M + N )
+        '''
+        def helper(st):
+            skip_count, res = 0, []
+
+            for char in reversed(st):
+                if char == "#": skip_count += 1
+                elif skip_count: skip_count -= 1
+                else: res.append(char)
+            return res
+        
+        return helper(s) == helper(t)
