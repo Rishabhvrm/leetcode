@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         l = len(nums)
@@ -27,3 +28,21 @@ class Solution:
             prevMap[ele] = idx
         
         return   # no solution
+    
+    # revisit
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        '''
+        APPROACH: use dict to store val -> idx
+        check if target - val exist in the map
+        if it does, return the curr idx and target-val idx
+        else add it to the map
+        TIME: O(N)
+        SPACE: O(1)
+        '''
+
+        # { val : idx }
+        val_idx_map = {}
+        for i, n in enumerate(nums):
+            if (target - n) in val_idx_map:
+                return [i, val_idx_map[target - n]]
+            val_idx_map[n] = i
