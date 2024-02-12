@@ -42,3 +42,21 @@ itr2 = ['a','b']
 itr3 = ['FIRST']
 
 for item in itertools.zip_longest(itr1, itr2, itr3, fillvalue=None): print(item)
+
+
+
+'''
+nonlocal variables
+'''
+print("\n---------------------------\nnonlocal variables:")
+def outer_function():
+    x = 20
+    
+    def inner_function():
+        nonlocal x
+        x = 10
+        print(x)
+    inner_function()
+    print(x)            # output will  be 20 if 'nonlocal x' is not present
+
+outer_function()
