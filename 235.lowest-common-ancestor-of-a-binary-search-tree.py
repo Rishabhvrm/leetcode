@@ -25,3 +25,24 @@ class Solution:
             # split occurs (answer), or curr is one of inputs
             else:
                 return curr
+            
+    '''
+    APPROACH:
+    find out where the split occurs
+    if value of p and q > curr node val => p and q lies in right subtree
+    if value of p and q < curr node val => p and q lies in left subtree
+    if p and q lies in different subtrees, OR 
+      (p or q) is the current node and other node lies in one of the subtrees:
+          then current node is the lowest common ancestor
+    TIME: O(N)
+    SPACE: O(1), if recursion stack not considered
+    '''
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        elif p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        # p and q exists in different subtrees OR
+        # (p or q) is the current node and other node lies in one of the subtrees:
+        else: 
+            return root
