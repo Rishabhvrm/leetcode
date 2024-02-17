@@ -19,7 +19,7 @@ class Solution:
                 l += 1
             
             char_set.add(s[r])
-            curr_len = len(s[l : r + 1])
+            curr_len = len(s[l : r + 1])        # not cool, slicing creates a new list, instead just do r - l + 1
             max_len = max(max_len, curr_len)
 
         return max_len
