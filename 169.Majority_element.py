@@ -1,5 +1,8 @@
 # https://leetcode.com/problems/majority-element/description/
 
+from typing import List
+
+
 def majorityElement(nums) -> int:
     dict = {}
     n = len(nums)
@@ -69,3 +72,33 @@ def majorityElement3(nums):
 
 print(majorityElement3(nums2))
 
+'''
+REVISIT
+APPROACH: count occurances using hashmap,
+return key where value is > n/2
+TIME: O(N)
+SPACE: O(N), hashmap
+'''
+def majorityElement_revisit(nums: List[int]) -> int:
+    counter = {}
+    for n in nums: counter[n] = counter.get(n, 0) + 1
+
+    for k, v in counter.items():
+        if v > len(nums)/2: return k
+
+'''
+REVISIT
+APPROACH: Bayer Moore's Voting Algorithm
+TIME: O(N)
+SPACE: O(1)
+'''
+def majorityElement_revisit_bayer(self, nums: List[int]) -> int:
+    count = 0
+    candidate = 0 # could be any arbitary value
+    for n in nums:
+        if count == 0: candidate = n
+        count += 1 if n == candidate else -1
+        
+    return candidate
+    
+print(majorityElement_revisit([3,3,4]))
