@@ -27,6 +27,7 @@ class Solution:
 
     ''' REVISIT
     APPROACH: Sliding Window
+    set : it'll contain the current window chars
     if incoming char already present in set, 
     keep removing chars from set that s[l] points 
     till occurace of incoming duplicate char is also removed
