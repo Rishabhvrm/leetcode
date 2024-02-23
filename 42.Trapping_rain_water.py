@@ -25,6 +25,6 @@ class Solution:
         return trapped_water
 
 height = [0,1,0,2,1,0,1,3,2,1,2,1]
-height = [10,0,0,0]
+# height = [10,0,0,0] # 0
 obj = Solution()
 print(obj.trap(height))
