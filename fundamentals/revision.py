@@ -61,3 +61,29 @@ print(dfs_res)
 '''
 ----------------------------------------------------------------------------
 '''
+
+'''
+----------------------------------------------------------------------------
+REVISION: Sliding Window
+Given an array of integers, 
+find maximum sum of any contiguous subarray of size k.
+
+'''
+def max_subarray_sum(nums, k) -> int:
+    n, max_sum = len(nums), float('-inf')
+    if k > n: return sum(nums)
+
+    sub_array_sum = sum(nums[:k])
+    for i in range(n-k):
+        sub_array_sum -= nums[i]
+        sub_array_sum += nums[i+k]
+        max_sum = max(sub_array_sum, max_sum)
+    
+    return max_sum
+
+print("\n---------------------------\nsliding window():")
+print(max_subarray_sum([1,2,3,4,5,6], 2))
+
+'''
+----------------------------------------------------------------------------
+'''
