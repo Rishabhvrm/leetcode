@@ -128,3 +128,16 @@ if left_idx != right_idx:
     print(f"Target: '{target_2}' found between indices {left_idx} and {right_idx - 1}")
 else:
     print(f"Target: '{target_2}' not found in the array")
+
+
+
+
+## WHAT'S THE DIFFERENCE BTW < AND <=
+    
+'''
+revisit binary search
+difference btw < and <=
+
+while left < right:  => fails for size = 1
+that's why left <= right is necessary
+'''
