@@ -48,6 +48,7 @@ class Solution:
         # also finds middle if no cycle (fast and slow pointers)
         slow, fast = head, head
 
+        # while fast.next and fast:       THIS WON'T WORK, WHAT IF fast is Null, there's no null.next
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
