@@ -1,4 +1,5 @@
-def numIdenticalPairs(self, nums: List[int]) -> int:
+from typing import List
+def numIdenticalPairs(nums: List[int]) -> int:
     
     ## APPROACH-1: BRUTE FORCE, 2 for loops
     ## T(N): O(N * N)
@@ -56,3 +57,5 @@ def numIdenticalPairs(self, nums: List[int]) -> int:
             count[ele] += 1
     
     return pair_count
+
+print(numIdenticalPairs(nums=[1,1,1,1]))
