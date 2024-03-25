@@ -1,3 +1,5 @@
+from typing import List
+import collections
 class Solution:
     '''
     APPROACH-1: BRUTE FORCE
