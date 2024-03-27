@@ -131,12 +131,18 @@ print(s.findMedianSortedArrays_revisit(nums1, nums2))
 
 class Solution2:
     '''
-    initial partition is decided with the help of mid
+    median will be at middle of merged array
+    let's make the left half of this merged array virtually
+    for an ideal scenario:
+        half of this merged_half would come from (left half of arr1)
+        other half of this merged_half would come from (left half of arr2)
+
+    initial partition is decided with the help of mid(of A), in order to find the left half of A
     we take start to mid from smaller array
     and then remaining elements from bigger array (remaining = half - mid)
 
     if total_length(t) is odd, 
-    then left_partition(LP) would contain floor(t/2) elements and 
+    then left_partition(LP) of the merged_array would contain floor(t/2) elements and 
     right_partition(RP) would contain ceil(t/2) elements
     then, median would be the min(RP)
 
@@ -144,9 +150,9 @@ class Solution2:
     then, median would be the AVG(max(LP), min(RP))
 
     check if you make the correct partitions by checking
-    rightmost val of LP of A < leftmost val of RP of B
-    AND
-    rightmost val of LP of B < leftmost val of RP of A
+        rightmost val of LP of A < leftmost val of RP of B
+        AND
+        rightmost val of LP of B < leftmost val of RP of A
     using inf and -inf to handle edge cases
     '''
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
@@ -165,7 +171,8 @@ class Solution2:
 
             # find 4 values to check if the partition is correct by comapring them 
             # make sure indexes don't go out of bounds by giving default values
-            # left denotes mid, i.e. point till partition is considered
+            # left denotes mid, i.e. point till partition is considered, 
+            # right denotes the element just next to left (just outside the boundary)
             A_left = A[a] if a >= 0 else float('-inf')
             A_right = A[a + 1] if (a + 1) < len(A) else float('inf')
             B_left = B[b] if b >= 0 else float('-inf')
