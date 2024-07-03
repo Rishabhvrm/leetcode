@@ -1,5 +1,37 @@
+from collections import defaultdict
 from typing import List
+
+
 class Solution:
+    '''
+    Approach: make a person -> followers map
+    find potential candidate (he would have n-1 followers and should not be present in any of the followers list)
+    verify that candidate
+    '''
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        if n == 1 and len(trust) == 0:
+            return n
+
+        p_f = defaultdict(list)     # person -> [list of followeres who trust this person]
+        
+        # make map      
+        for a, b in trust:
+            p_f[b].append(a)
+            
+        # find candidate
+        candidate = -1
+        for k, v in p_f.items():
+            if len(v) == n - 1:
+                candidate = k
+        
+        # verify if candidate can be town judge or not
+        for k, v in p_f.items():
+            if candidate in v or candidate == -1:
+                return -1
+                
+        return candidate
+                
+        
     '''
     APPROACH: graph, edge direction represents trust
     create indegree(# of edegs entering a node) 
