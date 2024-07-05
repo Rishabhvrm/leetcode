@@ -53,13 +53,18 @@ class Solution:
     Time: O(n)
     Space: O(1)
     '''
+    def is_critical(self, prev: Optional[ListNode], curr: Optional[ListNode], nxt: Optional[ListNode]) -> bool:
+        return (
+            (prev.val < curr.val > nxt.val) or
+            (prev.val > curr.val < nxt.val)
+        )
     def nodesBetweenCriticalPoints(self, head: Optional[ListNode]) -> List[int]:
         prev, curr = head, head.next
         first_critical_idx, prev_critical_idx, curr_idx = 0, 0, 1
         res, min_dist = [-1, -1], float('inf')
 
         while curr.next:
-            if (prev.val < curr.val > curr.next.val) or (prev.val > curr.val < curr.next.val):
+            if self.is_critical(prev, curr, curr.next):
                 if first_critical_idx == 0:
                     first_critical_idx = curr_idx
                 else:
