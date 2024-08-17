@@ -25,12 +25,13 @@ class Solution:
         max_val = arrays[0][-1]
 
         for i in range(1, len(arrays)):
-            a = abs(max_val - arrays[i][0])
-            b = abs(min_val - arrays[i][-1])
+            curr_arr_min, curr_arr_max = arrays[i][0], arrays[i][-1]
+            a = abs(max_val - curr_arr_min)
+            b = abs(min_val - curr_arr_max)
 
             res = max(res, a, b)
             
-            max_val = max(max_val, arrays[i][-1])
-            min_val = min(min_val, arrays[i][0])
+            max_val = max(max_val, curr_arr_max)
+            min_val = min(min_val, curr_arr_min)
 
         return res
