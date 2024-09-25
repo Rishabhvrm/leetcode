@@ -2,6 +2,8 @@ from typing import List
 import math
 class Solution:
     '''
+    Approach: Build prefixes from arr1
+    traverse arr2 and look for longest matching prefix in prefix set made in above step
     Time: O((m * log10(M)) + (n * log10(N))) 
     m: len of arr1, M: max # of digits in ele of arr1
     n: len of arr2, N: max # of digits in ele of arr2
