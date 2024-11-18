@@ -56,3 +56,38 @@ class Solution:
                 return False
 
         return True
+    
+    
+'''
+Take 2
+'''
+def primeSubOperation(nums: List[int]) -> bool:
+    
+    def _is_prime(num):
+        if num < 2:
+            return False
+        
+        for i in range(2, math.floor(math.sqrt(num)) + 1):
+            if num % i == 0:
+                return False
+        return True
+            
+    
+    def _largest_prime_smaller_than(num):
+        # pick a prime strictly less than curr num
+        num -= 1
+        while num >= 2:
+            if _is_prime(num):
+                return num
+            num -= 1
+        
+        return 0        # if num < 2, subtract 0
+    
+    nums[0] -= _largest_prime_smaller_than(nums[0])
+    
+    for i in range(1, len(nums)):
+        nums[i] -= _largest_prime_smaller_than(nums[i] - nums[i - 1])
+        if nums[i] <= nums[i - 1]:
+            return False
+    
+    return True
