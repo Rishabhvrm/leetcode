@@ -59,3 +59,24 @@ class Solution:
 
         return res
     
+    from collections import deque
+    # converting into interval problem
+    def maximumBeauty(self, nums: List[int], k: int) -> int:
+        intervals = []
+        res = 1
+
+        for n in nums:
+            intervals.append([n - k, n + k])
+
+        intervals.sort()
+        deq = deque()
+        deq.append(intervals[0])
+        
+        for i in range(1, len(intervals)):
+            if deq and deq[0][1] < intervals[i][0]:               # if no overlap
+                deq.popleft()
+
+            deq.append(intervals[i])
+            res = max(res, len(deq))
+                        
+        return res
