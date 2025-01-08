@@ -28,3 +28,26 @@ class Solution:
             res.append(total_dist)
         
         return res
+    
+    '''
+    approach-2: brute force but better using set
+    '''
+    def minOperations(self, boxes: str) -> List[int]:
+        ones = set()
+        boxes = [int(b) for b in boxes]
+
+        for i, b in enumerate(boxes):
+            if b:
+                ones.add(i)
+                
+        res = []
+        for i in range(len(boxes)):
+            total_at_idx = 0
+
+            for ele in ones:
+                if i != ele:
+                    total_at_idx += abs(i - ele)
+            
+            res.append(total_at_idx)
+
+        return res
