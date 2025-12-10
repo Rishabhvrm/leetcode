@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     '''
     APPROACH: 2 Pointers, use concept of 2-SUM-II (start and end pointer, move according to sum and target)
@@ -37,6 +38,70 @@ class Solution:
                     while l < r and nums[r + 1] == nums[r]:
                         r -= 1
         return res
+
+    def threeSumRevisit(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+
+        for i in range(len(nums) - 1):
+            # to skip duplicates
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+
+            l, r = i + 1, len(nums) - 1
+            
+            while l < r:
+                three_sum = nums[i] + nums[l] + nums[r]
+
+                if three_sum < 0:
+                    l += 1
+                elif three_sum > 0:
+                    r -= 1
+                elif three_sum == 0:
+                    res.append([nums[i], nums[l], nums[r]])
+                    l += 1
+                    '''
+                    to skip duplicates
+                        #  l                    r
+                    -4,-1,-1, -1, -1, -1, 0, 1, 2
+
+                        #                 l     r
+                    -4,-1,-1, -1, -1, -1, 0, 1, 2
+
+                                          #  l  r
+                    -4,-1,-1, -1, -1, -1, 0, 1, 2
+                    '''
+                    while l < r and nums[l] == nums[l - 1]:
+                        l += 1
+
+        return res
+
+
+    # slightly slower (if I remove the skip condition) bcz what if there A LOT of duplicates, 
+    # it sure won't add it to the answer but still will traverse them
+    def threeSumRevisitUsingTuples(self, nums: List[int]) -> List[List[int]]:
+        res = set()
+        nums.sort()
+
+        for i in range(len(nums)):
+            if i > 0 and nums[i - 1] == nums[i]:
+                continue
+
+            l, r = i + 1, len(nums) - 1
+
+            while l < r:
+                three_sum = nums[i] + nums[l] + nums[r]
+
+                if three_sum < 0:
+                    l += 1
+                elif three_sum > 0:
+                    r -= 1
+                elif three_sum == 0:
+                    res.add((nums[i], nums[l], nums[r]))
+                    l += 1
+        
+        return [list(t) for t in res]        
+
 
     def test_threeSum(self):
         sol = Solution()
