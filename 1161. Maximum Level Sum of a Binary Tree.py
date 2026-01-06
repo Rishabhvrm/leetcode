@@ -1,4 +1,5 @@
 # Definition for a binary tree node.
+from collections import defaultdict
 from typing import Optional
 
 
@@ -34,3 +35,25 @@ class Solution:
             level += 1
         
         return ans
+    
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+        level_sum = defaultdict(int)
+
+        def dfs(node: Optional[TreeNode], level: int):
+            if not node:
+                return
+            
+            level_sum[level] += node.val
+            dfs(node.left, level + 1)
+            dfs(node.right, level + 1)
+
+        dfs(root, 1)
+        max_sum = float('-inf')
+        res_level = 0
+
+        for k,v in level_sum.items():
+            if v > max_sum:
+                max_sum = v
+                res_level = k
+        
+        return res_level
